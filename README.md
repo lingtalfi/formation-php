@@ -19,6 +19,7 @@ You already know how to program (variables, loops, functions) in another languag
 | [`04-web`](04-web/) | Forms (GET/POST), sessions, cookies, file uploads, debugging |
 | [`05-database`](05-database/) | PDO, prepared statements, CRUD, transactions |
 | [`cheatsheet.md`](cheatsheet.md) | Everything on one page |
+| [`cheatsheet-modern-php.md`](cheatsheet-modern-php.md) | What changed from PHP 7.0 to 8.5, with versions |
 | [`pdf/`](pdf/) | Printable PDF version of each module and the cheatsheet |
 
 Each module contains:

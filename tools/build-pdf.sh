@@ -32,5 +32,6 @@ build 03-oop           "PHP course — 03 OOP"          03-oop/README.md 03-oop/
 build 04-web           "PHP course — 04 Web"          04-web/README.md 04-web/exercises.md
 build 05-database      "PHP course — 05 Database"     05-database/README.md 05-database/exercises.md
 build cheatsheet       "PHP cheatsheet"               cheatsheet.md
+build cheatsheet-modern-php "Modern PHP cheatsheet"  cheatsheet-modern-php.md
 
 rm -rf "$TMP"
