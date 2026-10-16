@@ -18,27 +18,96 @@ A few facts worth knowing:
 
 ## Configuring the engine
 
-PHP reads its settings from a file called `php.ini`.
+PHP reads its settings from a text file called **`php.ini`**, once, when it starts.
+
+### Finding it
 
 ```bash
-php --ini        # shows which php.ini is loaded
-php -m           # lists loaded extensions
-php -i           # all settings (long!)
+php --ini
 ```
 
-In a web page, `<?php phpinfo(); ?>` shows the same information as a page. **Never leave it on a public site**: it reveals your configuration.
+```
+Configuration File (php.ini) Path: /etc/php/8.3/cli
+Loaded Configuration File:         /etc/php/8.3/cli/php.ini      <- the file to edit
+Scan for additional .ini files in: /etc/php/8.3/cli/conf.d       <- extra files, loaded after
+```
 
-Settings you'll meet most often:
+If *Loaded Configuration File* says `(none)`, PHP runs on its built-in defaults: create a `php.ini` in the indicated path by copying `php.ini-development` (shipped with PHP).
 
-| Setting | Meaning | Dev value |
+Typical locations:
+
+| Install | php.ini |
+|---|---|
+| Windows (zip) | `C:\php\php.ini` |
+| macOS (Homebrew) | `/opt/homebrew/etc/php/8.x/php.ini` (Intel Macs: `/usr/local/etc/php/8.x/`) |
+| Linux (Debian/Ubuntu) | `/etc/php/8.x/cli/php.ini` |
+| Laravel Herd | open it from Herd's settings (PHP tab) |
+
+> On a real server, the **command line and the web server can use different files**. On Linux: `/etc/php/8.x/cli/php.ini` for `php` in the terminal, `/etc/php/8.x/fpm/php.ini` for the website. Always check with `phpinfo()` in a page, not only `php --ini`. With `php -S` (our setup), it's the same file.
+
+PHP ships two templates: `php.ini-development` (shows errors, verbose) and `php.ini-production` (hides errors, safer). Start from the one matching the machine.
+
+### Syntax
+
+```ini
+; A comment starts with a semicolon
+display_errors = On
+error_reporting = E_ALL
+memory_limit = 256M
+date.timezone = Europe/Paris
+upload_max_filesize = 10M
+post_max_size = 12M          ; must be >= upload_max_filesize
+
+extension=pdo_sqlite         ; enable an extension (remove the ";" to activate a commented one)
+```
+
+**After editing, restart PHP**: stop `php -S` with `Ctrl+C` and start it again (on a server: restart Apache or PHP-FPM). Then check the value in `phpinfo()`: it shows the *Local* and *Master* value of each setting.
+
+### Settings you'll meet most often
+
+| Setting | Meaning | Dev value | Production |
+|---|---|---|---|
+| `display_errors` | Show errors in the page | `On` | `Off` |
+| `log_errors` / `error_log` | Write errors to a log file | `On` / path | `On` / path |
+| `error_reporting` | Which errors are reported | `E_ALL` | `E_ALL` |
+| `memory_limit` | Max memory per script | `128M` (default) | as needed |
+| `max_execution_time` | Max seconds per request | `30` (default) | as needed |
+| `upload_max_filesize` | Max size of one uploaded file | `2M` (default) | as needed |
+| `post_max_size` | Max size of a whole POST request | `8M` (default) | ≥ upload size |
+| `date.timezone` | Default timezone for `date()` | `Europe/Paris` | same |
+| `session.cookie_httponly` | Session cookie hidden from JavaScript | `On` | `On` |
+
+### Three ways to change a setting
+
+From the widest to the narrowest scope:
+
+| Where | Applies to | Example |
 |---|---|---|
-| `display_errors` | Show errors in the page | `On` (never in production) |
-| `error_reporting` | Which errors are reported | `E_ALL` |
-| `upload_max_filesize` | Max size of an uploaded file | `2M` by default |
-| `memory_limit` | Max memory per script | `128M` by default |
-| `date.timezone` | Default timezone | `Europe/Paris` |
+| `php.ini` | everything using this PHP | `memory_limit = 256M` |
+| Command-line flag `-d` | this one run / this server | `php -S localhost:8000 -d display_errors=1` |
+| `ini_set()` in code | this script only, from that line on | `ini_set('display_errors', '1');` |
 
-You can also change some settings from code: `ini_set('display_errors', '1');`
+Read the current value from code with `ini_get('memory_limit')`.
+
+**Trap:** not every setting can be changed with `ini_set()`. Settings needed *before* your script runs, like `upload_max_filesize` and `post_max_size` (the upload has already happened when your code starts), can only be set in `php.ini`, with `-d`, or in server config. `ini_set()` then silently returns `false`:
+
+```php
+var_dump(ini_set('upload_max_filesize', '10M'));   // bool(false): ignored!
+var_dump(ini_get('upload_max_filesize'));          // string(2) "2M"
+```
+
+The PHP manual lists each setting's scope (`PHP_INI_ALL` = changeable anywhere, `PHP_INI_PERDIR` = not from `ini_set`, `PHP_INI_SYSTEM` = `php.ini` only).
+
+### Inspecting the configuration
+
+```bash
+php -m                     # loaded extensions
+php -i                     # all settings (long! filter it:)
+php -i | grep memory_limit             # macOS / Linux
+php -i | findstr memory_limit          # Windows
+```
+
+In a web page, `<?php phpinfo();` shows everything as a page. **Never leave it on a public site**: it reveals your configuration.
 
 ## PHP inside HTML
 

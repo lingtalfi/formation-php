@@ -2,13 +2,36 @@
 
 Create your files in a working folder of your own (for example `my-work/01/`).
 
-## 1.1 — Explore your configuration
+## 1.1 — Explore and change your configuration
 
-1. Run `php --ini` and find the path of the loaded `php.ini`.
+1. Run `php --ini` and find the path of the loaded `php.ini`. If it says `(none)`, create it from `php.ini-development` (ask the trainer if you can't find it).
 2. Run `php -m` and check that `pdo_sqlite` is in the list.
-3. Create `info.php` containing `<?php phpinfo();`, start `php -S localhost:8000` in that folder and open <http://localhost:8000/info.php>. Find the values of `display_errors` and `upload_max_filesize`.
+3. Create `info.php` containing `<?php phpinfo();`, start `php -S localhost:8000` in that folder and open <http://localhost:8000/info.php>. Note the values of `display_errors`, `upload_max_filesize` and `date.timezone`.
+4. Open your `php.ini` in your editor and set:
 
-*No solution file: compare your answers with your neighbour or the trainer.*
+   ```ini
+   date.timezone = Europe/Paris
+   upload_max_filesize = 10M
+   post_max_size = 12M
+   ```
+
+   Restart `php -S` (`Ctrl+C`, then start it again) and reload `info.php`: the new values must appear.
+5. Create `ini.php`:
+
+   ```php
+   <?php
+   var_dump(ini_get('memory_limit'));
+   var_dump(ini_set('memory_limit', '256M'));
+   var_dump(ini_get('memory_limit'));
+
+   var_dump(ini_set('upload_max_filesize', '50M'));
+   var_dump(ini_get('upload_max_filesize'));
+   ```
+
+   Run it with `php ini.php`. Why does the first `ini_set` work and not the second?
+6. Run `php -d memory_limit=64M ini.php`. What changed in the first line, and why?
+
+*No solution file: the answers are in the lesson. Compare with the trainer.*
 
 ## 1.2 — Business card page
 
