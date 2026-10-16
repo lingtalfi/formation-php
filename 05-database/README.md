@@ -17,7 +17,7 @@ The same with MySQL / MariaDB:
 
 ```php
 $pdo = new PDO(
-    'mysql:host=localhost;dbname=shop;charset=utf8mb4',
+    'mysql:host=127.0.0.1;dbname=shop;charset=utf8mb4',
     'db_user',
     'db_password',
     [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION, PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC]
@@ -186,4 +186,4 @@ Install the VS Code extension **SQLite Viewer** (Florian Klampfer) and click the
 
 ---
 
-Now do the [exercises](exercises.md).
+Now do the [exercises](exercises.md). Then, to run the same code on a real database server, continue with [06 — MySQL](../06-mysql/).

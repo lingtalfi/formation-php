@@ -37,6 +37,9 @@ $ok = report(
     'Windows: enable extension=fileinfo in php.ini.'
 ) && $ok;
 
+// Only needed for the optional module 06: informative, doesn't fail the check
+echo (extension_loaded('pdo_mysql') ? '[OK]   ' : '[INFO] ') . 'Extension pdo_mysql (only for module 06 — MySQL)' . PHP_EOL;
+
 if (extension_loaded('pdo_sqlite')) {
     try {
         $pdo = new PDO('sqlite::memory:');

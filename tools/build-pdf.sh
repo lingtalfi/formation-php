@@ -31,6 +31,7 @@ build 02-procedural    "PHP course — 02 Procedural"   02-procedural/README.md 
 build 03-oop           "PHP course — 03 OOP"          03-oop/README.md 03-oop/exercises.md
 build 04-web           "PHP course — 04 Web"          04-web/README.md 04-web/exercises.md
 build 05-database      "PHP course — 05 Database"     05-database/README.md 05-database/exercises.md
+build 06-mysql         "PHP course — 06 MySQL"        06-mysql/README.md 06-mysql/exercises.md
 build cheatsheet       "PHP cheatsheet"               cheatsheet.md
 build cheatsheet-modern-php "Modern PHP cheatsheet"  cheatsheet-modern-php.md
 

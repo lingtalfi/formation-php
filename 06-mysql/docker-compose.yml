@@ -1,0 +1,24 @@
+# MySQL server + Adminer for module 06.
+# Start: docker compose up -d     Stop: docker compose down
+services:
+  db:
+    image: mysql:8.4
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: training
+      MYSQL_USER: training
+      MYSQL_PASSWORD: training
+    ports:
+      - "3306:3306"          # change to "3307:3306" if port 3306 is already used
+    volumes:
+      - db-data:/var/lib/mysql
+
+  adminer:                   # web UI: http://localhost:8080 (server: db, user/pass: training)
+    image: adminer
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+
+volumes:
+  db-data:

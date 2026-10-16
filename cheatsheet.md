@@ -150,7 +150,8 @@ $pdo = new PDO('sqlite:' . __DIR__ . '/app.db', null, null, [
     PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
     PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
 ]);
-// MySQL: 'mysql:host=localhost;dbname=db;charset=utf8mb4', $user, $pass
+// MySQL: 'mysql:host=127.0.0.1;dbname=db;charset=utf8mb4', $user, $pass
+//        + PDO::ATTR_EMULATE_PREPARES => false
 
 $rows = $pdo->query('SELECT * FROM t')->fetchAll();          // no user data only
 $stmt = $pdo->prepare('SELECT * FROM t WHERE id = :id');     // user data: ALWAYS prepare
