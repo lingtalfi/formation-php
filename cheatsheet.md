@@ -8,7 +8,11 @@ php script.php             # run a script
 php -l script.php          # syntax check
 php -S localhost:8000      # web server in the current folder
 php --ini / php -m         # config file / loaded extensions
+php --ri intl              # details of one extension
+php -d memory_limit=1G x.php  # override a setting for one run
 ```
+
+Extensions: Windows → `extension=intl` in php.ini · macOS → bundled, or `pecl install xdebug` · Linux → `sudo apt install php-intl` · then restart PHP. In code: `extension_loaded('intl')`.
 
 ## Basics
 

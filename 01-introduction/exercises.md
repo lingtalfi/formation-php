@@ -68,3 +68,12 @@ Create `types.php`, a command-line script (`php types.php`).
 2. Define a constant `VAT_RATE` (0.2) and a variable `$priceExclTax` (49.90). Display the price including tax, rounded to 2 decimals with `round()`.
 
 3. Display your result with `number_format($value, 2, ',', ' ')` to get the French format (`59,88`).
+
+## 1.4 — Extensions
+
+1. Check whether `intl`, `gd` and `zip` are enabled on your machine (`php -m`). Enable or install the missing ones, following the lesson for your OS.
+2. Create `extensions.php` (command line) that, for each of the three, displays `intl: OK` or `intl: MISSING` using `extension_loaded()`.
+3. Then use each one:
+   - **intl**: display `1234567.891` as a price in euros, formatted for France (`1 234 567,89 €`) and for the US (`€1,234,567.89`). Use `new NumberFormatter('fr_FR', NumberFormatter::CURRENCY)` and its `formatCurrency()` method.
+   - **gd**: create a 200×100 PNG image with a colored background and a line of text, saved as `badge.png`. Functions: `imagecreatetruecolor`, `imagecolorallocate`, `imagefill`, `imagestring`, `imagepng`.
+   - **zip**: create `archive.zip` containing `badge.png` and a text file built from a string. Class: `ZipArchive` (`open` with `ZipArchive::CREATE`, `addFile`, `addFromString`, `close`).

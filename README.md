@@ -13,7 +13,7 @@ You already know how to program (variables, loops, functions) in another languag
 | Folder | Topic |
 |---|---|
 | [`00-setup`](00-setup/) | Install PHP and an editor (Windows, macOS, Linux) |
-| [`01-introduction`](01-introduction/) | What PHP is, PHP + HTML, variables, types, constants |
+| [`01-introduction`](01-introduction/) | What PHP is, php.ini and extensions, PHP + HTML, variables, types, constants |
 | [`02-procedural`](02-procedural/) | Conditions, loops, functions, arrays |
 | [`03-oop`](03-oop/) | Classes, objects, inheritance, interfaces, namespaces |
 | [`04-web`](04-web/) | Forms (GET/POST), sessions, cookies, file uploads, debugging |

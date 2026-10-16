@@ -109,6 +109,69 @@ php -i | findstr memory_limit          # Windows
 
 In a web page, `<?php phpinfo();` shows everything as a page. **Never leave it on a public site**: it reveals your configuration.
 
+## Extensions
+
+Much of PHP's functionality lives in **extensions**: modules that can be switched on or off. A few you'll meet constantly:
+
+| Extension | Provides | Typical use |
+|---|---|---|
+| `pdo_sqlite`, `pdo_mysql`, `pdo_pgsql` | database drivers | modules 05 and 06 |
+| `mbstring` | `mb_*` functions | strings with accents, emojis |
+| `intl` | `NumberFormatter`, `IntlDateFormatter`, `Collator` | prices and dates in the user's language; required by Symfony, WooCommerce… |
+| `gd` (or `imagick`) | image creation and resizing | thumbnails, captchas |
+| `zip` | `ZipArchive` | create or read .zip files; required by Composer |
+| `curl` | HTTP requests | calling APIs |
+| `fileinfo` | real MIME type of a file | upload checks (module 04) |
+| `opcache` | caches compiled code | performance, always on in production |
+| `xdebug` | step debugger, profiler | development only |
+
+### Is it enabled?
+
+```bash
+php -m                              # list of loaded extensions
+php -m | grep intl                  # macOS / Linux
+php -m | findstr intl               # Windows
+php --ri intl                       # details of one extension
+```
+
+From code: `extension_loaded('intl')` returns `true` or `false`. In a page, `phpinfo()` has one section per extension.
+
+A missing extension shows up as an error like *"Call to undefined function imagecreatetruecolor()"* or *"Class "NumberFormatter" not found"*.
+
+### Enabling or installing one
+
+Extensions fall into two groups: **bundled** ones, shipped with PHP and just waiting to be switched on, and **third-party** ones (xdebug, redis, imagick…) that must be downloaded first.
+
+**Windows (zip install)** — the bundled extensions are already in `C:\php\ext\` as `php_xxx.dll`. Enable them in `php.ini`:
+
+```ini
+extension_dir = "ext"
+extension=intl
+extension=gd
+extension=zip
+```
+
+For a third-party extension, download the DLL matching **exactly** your PHP version, *x64* and *NTS* (Non Thread Safe), put it in `ext\`, and add the line. Xdebug's site has a [wizard](https://xdebug.org/wizard) that tells you which file to download: paste the output of `php -i` into it.
+
+**macOS (Homebrew)** — `intl`, `gd`, `zip`, `curl`, `mbstring` and the PDO drivers are compiled in: nothing to do. Third-party ones install with `pecl install xdebug` (or `redis`, `imagick`…), which also adds the line to `php.ini`.
+
+**Linux (Debian/Ubuntu)** — one package per extension, enabled automatically:
+
+```bash
+sudo apt install php-intl php-gd php-zip php-curl
+# disable / re-enable without uninstalling:
+sudo phpdismod xdebug
+sudo phpenmod xdebug
+```
+
+**Laravel Herd** — ships with the common extensions already enabled.
+
+After any change: **restart PHP** (`php -S`, PHP-FPM or Apache), then check with `php -m`.
+
+> `extension=` vs `zend_extension=`: a few extensions hook deeper into the engine and are loaded with `zend_extension=` instead. The two you'll see are `opcache` and `xdebug`.
+
+> **PECL → PIE**: `pecl` is the historical installer for third-party extensions. The PHP Foundation now provides **PIE** (PHP Installer for Extensions), which works like Composer: `pie install xdebug/xdebug`. You'll find both in tutorials.
+
 ## PHP inside HTML
 
 A `.php` file is HTML by default. PHP code goes between `<?php` and `?>`.
