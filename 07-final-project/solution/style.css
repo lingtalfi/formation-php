@@ -13,3 +13,8 @@ nav.pages a, nav.pages span { padding: .2rem .5rem; }
 nav.pages .current { font-weight: bold; background: #eee; }
 header { display: flex; justify-content: space-between; align-items: center; }
 .muted { color: #777; }
+.cards, .columns { display: flex; gap: 1rem; flex-wrap: wrap; margin: 1rem 0; }
+.cards > div { flex: 1; min-width: 140px; background: #f4f4fb; padding: .8rem; border-radius: 6px; }
+.cards strong { font-size: 1.6em; }
+.columns > div { flex: 1; min-width: 200px; }
+table.small { font-size: .85em; }

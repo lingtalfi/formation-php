@@ -22,6 +22,7 @@ $flash = take_flash();
     <header>
         <h1>Books (<?= $total ?>)</h1>
         <div>
+            <a href="stats.php">Statistics</a>
             <a href="../">View shop</a>
             <form class="inline" method="post" action="logout.php">
                 <?= csrf_field() ?>

@@ -34,4 +34,4 @@ Take your guestbook from exercise 5.3 (or the provided solution) and make it run
 
 Bonus 1: the guestbook paginates with `bindValue(..., PDO::PARAM_INT)` in `MessageRepository::findPage()`. Replace it with a plain `$stmt->execute([$limit, $offset])` and try with `ATTR_EMULATE_PREPARES` set to `true`, then `false`. What happens, and why? (Answer in the *Connecting from PHP* section of the lesson.)
 
-Bonus 2: move the bookshop app (exercise 5.4) to MySQL the same way: `config.php`, a `schema.sql` with proper MySQL types (`DECIMAL(6,2)` for the price), and a new `Database.php`. The repository, the validator and all the pages should stay unchanged.
+Bonus 2: move the bookshop app ([final project](../07-final-project/)) to MySQL the same way: `config.php`, a `schema.sql` with proper MySQL types (`DECIMAL(6,2)` for the price), and a new `Database.php`. The repository, the validator and all the pages should stay unchanged.

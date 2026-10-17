@@ -62,27 +62,6 @@ Requirements:
 
 Bonus: pagination, 5 messages per page with `LIMIT` / `OFFSET` and *Newer / Older* links. Read the *Bonus: pagination* section of the lesson first. The provided solution includes it.
 
-## 5.4 — Bonus project: Bookshop
+## Next: the final project
 
-For those who finished early. Build a small bookshop app with a public catalog and an admin area. This is the kind of app you'd actually be asked to build at work.
-
-**Catalog (`index.php`)**
-
-- A `books` table (id, title, author, year, price, created_at), created with some sample books on first run (20+, to have several pages).
-- Books displayed in a table, **8 per page**, with *Previous / 1 2 3 / Next* links.
-- A **search** field filtering on title or author.
-- **Sortable columns**: clicking *Title*, *Author*, *Year* or *Price* sorts by that column; clicking again reverses the order. Show an arrow ▲▼ on the current column.
-- Search, sort and page must work **together**: changing page keeps the search and the sort; a new search or sort goes back to page 1.
-- Robustness: `?page=abc`, `?page=999`, `?sort=hack` must not break anything.
-
-**Admin (`admin/`)**
-
-- `login.php`: password form (hash + `password_verify`, `session_regenerate_id` after login).
-- Every admin page redirects to the login when not logged in.
-- `index.php`: the same list, with *Edit* and *Delete* buttons, and an *Add a book* link.
-- `edit.php`: one form for both adding (no `id`) and editing (`?id=12`), with validation (title and author required, year optional but valid, price ≥ 0 and accepting `12,50`).
-- Delete and logout are **POST** forms, never links.
-- All POST forms protected by a **CSRF token**.
-- Flash messages after each action ("“Dune” updated.").
-
-Solution: [`solutions/bookshop/`](solutions/bookshop/).
+Finished? Go to the [final project](../07-final-project/): a bookshop app with search, sorting, pagination, a secured admin and visit statistics. It combines everything from the course.

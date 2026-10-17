@@ -3,6 +3,9 @@ require __DIR__ . '/src/bootstrap.php';
 
 use App\BookRepository;
 use App\Database;
+use App\Tracker;
+
+Tracker::start();   // record this page view (public pages only: admin pages are not tracked)
 
 $repo = new BookRepository(Database::connection());
 

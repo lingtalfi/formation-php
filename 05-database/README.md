@@ -240,11 +240,11 @@ url(['page' => 3]);                        // keeps q, sort, dir
 url(['sort' => 'price', 'page' => null]);  // new sort -> back to page 1 (null keys are dropped)
 ```
 
-The full working version is the bookshop app: exercise 5.4.
+The full working version is the bookshop app of the [final project](../07-final-project/).
 
 ## Bonus: securing an admin area
 
-The checklist used in the bookshop admin (exercise 5.4):
+The checklist used in the bookshop admin of the [final project](../07-final-project/):
 
 1. **Password stored as a hash** (`password_hash`), checked with `password_verify`.
 2. **`session_regenerate_id(true)`** right after a successful login.

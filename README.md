@@ -17,8 +17,9 @@ You already know how to program (variables, loops, functions) in another languag
 | [`02-procedural`](02-procedural/) | Conditions, loops, functions, arrays |
 | [`03-oop`](03-oop/) | Classes, objects, inheritance, interfaces, namespaces |
 | [`04-web`](04-web/) | Forms (GET/POST), sessions, cookies, file uploads, debugging |
-| [`05-database`](05-database/) | PDO, prepared statements, CRUD, transactions — *bonus:* pagination, sorting, search, secured admin (bookshop app) |
+| [`05-database`](05-database/) | PDO, prepared statements, CRUD, transactions — *bonus:* pagination, sorting, search, admin security |
 | [`06-mysql`](06-mysql/) | *Optional:* MySQL server, users, types, joins, moving an app from SQLite to MySQL |
+| [`07-final-project`](07-final-project/) | Bookshop app: catalog, secured admin, visit statistics — the closing test |
 | [`cheatsheet.md`](cheatsheet.md) | Everything on one page |
 | [`cheatsheet-modern-php.md`](cheatsheet-modern-php.md) | What changed from PHP 7.0 to 8.5, with versions |
 | [`pdf/`](pdf/) | Printable PDF version of each module and the cheatsheet |
@@ -59,7 +60,7 @@ then open <http://localhost:8000> in your browser.
 | 15:30 – 16:45 | 05 — Database with PDO |
 | 16:45 – 17:00 | Wrap-up, questions, what to study next |
 
-Over two days, the second day is used for the final project of module 05, module 06 (MySQL) and exam preparation. On a single day, module 06 is self-study.
+Over two days, the second day is used for the final project (`07`), module 06 (MySQL) and exam preparation. On a single day, both are self-study.
 
 ## Requirements
 

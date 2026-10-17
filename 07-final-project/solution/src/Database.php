@@ -21,7 +21,7 @@ class Database
         return self::$pdo;
     }
 
-    /** Creates the table and some books on first run. Delete bookshop.db to start over. */
+    /** Creates the tables and some books on first run. Delete bookshop.db to start over. */
     private static function install(PDO $pdo): void
     {
         $pdo->exec('CREATE TABLE IF NOT EXISTS books (
@@ -32,6 +32,25 @@ class Database
             price      REAL NOT NULL DEFAULT 0,
             created_at TEXT NOT NULL
         )');
+
+        // One row per page view, filled by Tracker
+        $pdo->exec('CREATE TABLE IF NOT EXISTS visits (
+            id          INTEGER PRIMARY KEY AUTOINCREMENT,
+            visited_at  TEXT NOT NULL,
+            ip          TEXT NOT NULL,
+            method      TEXT NOT NULL,
+            path        TEXT NOT NULL,
+            search      TEXT,
+            status      INTEGER NOT NULL,
+            duration_ms INTEGER NOT NULL,
+            referer     TEXT,
+            user_agent  TEXT,
+            browser     TEXT,
+            os          TEXT,
+            language    TEXT,
+            visitor_id  TEXT
+        )');
+        $pdo->exec('CREATE INDEX IF NOT EXISTS idx_visits_date ON visits (visited_at)');
 
         if ((int) $pdo->query('SELECT COUNT(*) FROM books')->fetchColumn() > 0) {
             return;
