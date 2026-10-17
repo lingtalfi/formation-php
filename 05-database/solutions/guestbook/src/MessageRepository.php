@@ -16,6 +16,22 @@ class MessageRepository
             ->fetchAll();
     }
 
+    /**
+     * One page of messages, newest first.
+     * LIMIT and OFFSET are bound as integers (PDO::PARAM_INT): with MySQL, binding them
+     * as strings (what execute([...]) does) can produce LIMIT '5', which is invalid.
+     */
+    public function findPage(int $limit, int $offset): array
+    {
+        $stmt = $this->pdo->prepare(
+            'SELECT * FROM messages ORDER BY created_at DESC, id DESC LIMIT :limit OFFSET :offset'
+        );
+        $stmt->bindValue('limit', $limit, PDO::PARAM_INT);
+        $stmt->bindValue('offset', $offset, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+
     public function add(string $author, string $content): int
     {
         $stmt = $this->pdo->prepare(
