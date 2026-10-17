@@ -81,6 +81,8 @@ exit
 
 Or use a GUI: Adminer (included in the Docker setup), phpMyAdmin, [DBeaver](https://dbeaver.io), TablePlus, or the VS Code extension *Database Client*.
 
+To **design** tables as a diagram and generate the SQL, use [MySQL Workbench](https://dev.mysql.com/downloads/workbench/) (free). More in [useful tools](../useful-tools.md).
+
 ### Users and permissions
 
 Never let your application connect as `root`. Create one user per application, with rights on its own database only:

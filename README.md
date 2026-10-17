@@ -22,6 +22,7 @@ You already know how to program (variables, loops, functions) in another languag
 | [`07-final-project`](07-final-project/) | Bookshop app: catalog, secured admin, visit statistics — the closing test |
 | [`cheatsheet.md`](cheatsheet.md) | Everything on one page |
 | [`cheatsheet-modern-php.md`](cheatsheet-modern-php.md) | What changed from PHP 7.0 to 8.5, with versions |
+| [`useful-tools.md`](useful-tools.md) | Database design (MySQL Workbench), database clients, editor, ecosystem, references |
 | [`pdf/`](pdf/) | Printable PDF version of each module and the cheatsheet |
 
 Each module contains:

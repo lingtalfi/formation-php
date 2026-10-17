@@ -35,5 +35,6 @@ build 06-mysql         "PHP course — 06 MySQL"        06-mysql/README.md 06-my
 build 07-final-project "PHP course — 07 Final project" 07-final-project/README.md
 build cheatsheet       "PHP cheatsheet"               cheatsheet.md
 build cheatsheet-modern-php "Modern PHP cheatsheet"  cheatsheet-modern-php.md
+build useful-tools     "Useful tools"                 useful-tools.md
 
 rm -rf "$TMP"
